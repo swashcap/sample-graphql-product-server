@@ -1,7 +1,7 @@
 #!/bin/bash
 set -eo pipefail
 
-rm -rf tmp-types &
-find src -type f -name '*.js' -exec rm {} \+ &
+rm -rf tmp-data tmp-types &
+find {scripts,src} -type f -name '*.js' -exec rm {} \+ &
 
 wait

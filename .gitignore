@@ -60,5 +60,7 @@ typings/
 # next.js build output
 .next
 
+scripts/*.js
 src/*.js
+tmp-data
 tmp-types

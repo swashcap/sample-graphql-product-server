@@ -78,7 +78,7 @@ type Query {
   """
   Get a list of products, where `offset` is the pagination offset and `limit` is the maximum number of `items` returned in the `ProductPage`'s `items` list.
 
-  **Note:** `limit` defaults to `20`, with a maximum value of `50`.
+  **Note:** `limit` defaults to `20`, with a maximum value of `40`.
   """
   products(offset: Int, limit: Int): ProductsPage!
 }

@@ -2,23 +2,41 @@ import 'hard-rejection/register'
 
 import fs from 'fs'
 import path from 'path'
-import { ApolloServer, gql, IFieldResolver } from 'apollo-server'
+import {
+  ApolloServer,
+  gql,
+  IFieldResolver,
+  UserInputError
+} from 'apollo-server'
 
-const products: IFieldResolver<any, any, GQL.IProductsOnQueryArguments> = (
-  source,
-  args
-): GQL.IQuery['products'] => {
+const data = require('../tmp-data/data.json')
+
+export const products: IFieldResolver<
+  any,
+  any,
+  GQL.IProductsOnQueryArguments
+> = (source, args): GQL.IQuery['products'] => {
   let { offset, limit } = args
 
   offset = typeof offset !== 'number' ? 0 : offset
   limit = typeof limit !== 'number' ? 20 : limit
 
+  if (limit <= 0 || limit > 40) {
+    throw new UserInputError('Pagination arguments invalid', {
+      invalidArgs: ['limit']
+    })
+  } else if (offset < 0) {
+    throw new UserInputError('Pagination arguments invalid', {
+      invalidArgs: ['offset']
+    })
+  }
+
   return {
     __typename: 'ProductsPage',
-    items: [],
+    items: data.slice(offset, limit + offset),
     limit,
     offset,
-    totalProductsCount: 100
+    totalProductsCount: data.length
   }
 }
 
