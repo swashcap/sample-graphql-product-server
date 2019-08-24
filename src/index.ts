@@ -7,7 +7,11 @@ import { ApolloServer, gql } from 'apollo-server'
 export const server = new ApolloServer({
   cors: true,
   playground: true,
-  resolvers: {},
+  resolvers: {
+    Query: {
+      products: (): GQL.IQuery['products'] => ([])
+    }
+  },
   typeDefs: gql`
     ${fs.readFileSync(path.join(__dirname, 'schema.gql'))}
   `

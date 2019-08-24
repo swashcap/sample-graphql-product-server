@@ -1,5 +1,5 @@
 type Product {
-  name: String
+  id: ID!
 }
 
 type Query {
