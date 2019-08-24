@@ -11,6 +11,10 @@ import {
 
 const data = require('../tmp-data/data.json')
 
+export const typeDefs = gql`
+  ${fs.readFileSync(path.join(__dirname, 'schema.gql'))}
+`
+
 export const products: IFieldResolver<
   any,
   any,
@@ -48,9 +52,7 @@ export const server = new ApolloServer({
       products
     }
   },
-  typeDefs: gql`
-    ${fs.readFileSync(path.join(__dirname, 'schema.gql'))}
-  `,
+  typeDefs,
   uploads: false
 })
 
