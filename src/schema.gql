@@ -58,9 +58,27 @@ type Product {
   price: ProductPrice!
 }
 
+type ProductsPage {
+  items: [Product]!
+  """
+  Reflection of the query's `limit`
+  """
+  limit: Int!
+  """
+  Reflection of the query's `offset`
+  """
+  offset: Int!
+  """
+  The total number of `items`
+  """
+  totalProductsCount: Int!
+}
+
 type Query {
   """
-  Get a list of products
+  Get a list of products, where `offset` is the pagination offset and `limit` is the maximum number of `items` returned in the `ProductPage`'s `items` list.
+
+  **Note:** `limit` defaults to `20`, with a maximum value of `50`.
   """
-  products: [Product]!
+  products(offset: Int, limit: Int): ProductsPage!
 }
