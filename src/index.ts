@@ -5,6 +5,8 @@ import path from 'path'
 import { ApolloServer, gql } from 'apollo-server'
 
 export const server = new ApolloServer({
+  cors: true,
+  playground: true,
   resolvers: {},
   typeDefs: gql`
     ${fs.readFileSync(path.join(__dirname, 'schema.gql'))}
