@@ -32,7 +32,8 @@ export const server = new ApolloServer({
   },
   typeDefs: gql`
     ${fs.readFileSync(path.join(__dirname, 'schema.gql'))}
-  `
+  `,
+  uploads: false
 })
 
 if (require.main === module) {
