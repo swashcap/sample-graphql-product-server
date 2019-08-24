@@ -16,6 +16,7 @@
   },
   "scripts": {
     "build": "tsc",
+    "clean": "./scripts/clean.sh",
     "format": "prettier --write 'src/**/*{.gql,ts}'",
     "start": "node src/index.js"
   }
