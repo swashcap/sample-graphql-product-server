@@ -6,7 +6,9 @@ import { ApolloServer, gql } from 'apollo-server'
 
 export const server = new ApolloServer({
   resolvers: {},
-  typeDefs: gql`${fs.readFileSync(path.join(__dirname, 'schema.gql'))}`
+  typeDefs: gql`
+    ${fs.readFileSync(path.join(__dirname, 'schema.gql'))}
+  `
 })
 
 if (require.main === module) {
