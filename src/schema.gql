@@ -1,7 +1,66 @@
+"""
+Describes an image asset
+"""
+type Image {
+  alt: String!
+  height: Int!
+  uri: String!
+  width: Int!
+}
+
+"""
+E-commerce state and capabilities of a product
+"""
+type ProductFlags {
+  isInStock: Boolean!
+  isOnSale: Boolean!
+}
+
+type ProductMetadataReviews {
+  """
+  The maximum possible rating
+  """
+  maxRating: Int!
+  """
+  The current rating
+  """
+  rating: Float!
+  """
+  The total count of this product's reviews
+  """
+  reviewCount: Int!
+}
+
+type ProductMetadata {
+  image: Image
+  longDescription: String
+  name: String!
+  reviews: ProductMetadataReviews
+  shortDescription: String!
+}
+
+type ProductPrice {
+  currency: String!
+  price: String!
+  """
+  Will be populated if the product is on sale. This value should be displayed as the primary price instead of `price`.
+  """
+  salePrice: String
+}
+
+"""
+Describes a transactable e-commerce item
+"""
 type Product {
   id: ID!
+  flags: ProductFlags!
+  metadata: ProductMetadata!
+  price: ProductPrice!
 }
 
 type Query {
+  """
+  Get a list of products
+  """
   products: [Product]!
 }
