@@ -1,0 +1,8 @@
+{
+  "name": "sample-graphql-product-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:swashcap/sample-graphql-product-server.git",
+  "author": "Cory Reed",
+  "license": "Apache-2.0"
+}
