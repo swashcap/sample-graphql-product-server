@@ -46,6 +46,28 @@ export const products: IFieldResolver<
 
 export const server = new ApolloServer({
   cors: true,
+  formatError(error) {
+    if (process.env.NODE_ENV !== 'test') {
+      console.error(error)
+    }
+    return error
+  },
+  formatResponse(response: any) {
+    if (process.env.NODE_ENV !== 'test') {
+      /**
+       * The playground refreshes the schema every ~1 second. Don't log that.
+       */
+      if (
+        !('data' in response) ||
+        typeof response.data !== 'object' ||
+        Object.keys(response.data).length !== 1 ||
+        Object.keys(response.data)[0] !== '__schema'
+      ) {
+        console.log(response)
+      }
+    }
+    return response
+  },
   introspection: true,
   playground: true,
   resolvers: {
