@@ -13,10 +13,14 @@
     "prettier": "^1.18.2"
   },
   "devDependencies": {
+    "@commitlint/cli": "^8.1.0",
+    "@commitlint/config-conventional": "^8.1.0",
     "@types/faker": "^4.1.5",
     "@types/jest": "^24.0.18",
     "gql2ts": "^1.10.1",
+    "husky": "^3.0.4",
     "jest": "^24.9.0",
+    "lint-staged": "^9.2.4",
     "npm-run-all": "^4.1.5",
     "ts-jest": "^24.0.2",
     "typescript": "^3.5.3"
@@ -27,8 +31,20 @@
     "build:gql": "mkdir -p tmp-types && gql2ts src/schema.gql > tmp-types/gql.d.ts",
     "build:ts": "tsc",
     "clean": "./scripts/clean.sh",
-    "format": "prettier --write 'scripts/**/*.ts' 'src/**/*{.gql,ts}'",
+    "format": "prettier --write '*.js' 'scripts/**/*.ts' 'src/**/*{.gql,ts}'",
     "start": "node src/index.js",
     "test": "jest"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{gql,js,ts}": [
+      "prettier --write",
+      "git add"
+    ]
   }
 }
