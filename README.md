@@ -13,15 +13,15 @@ _Sample product data over [GraphQL](https://graphql.org)._
 1. Clone the repository
 2. Install the dependencies:
 
-  ```shell
-  cd sample-graphql-product-server
-  yarn
-  ```
+    ```shell
+    cd sample-graphql-product-server
+    yarn
+    ```
 3. Build the server:
 
-  ```shell
-  yarn build
-  ```
+    ```shell
+    yarn build
+    ```
 
 ## Running the server
 
