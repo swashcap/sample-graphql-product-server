@@ -46,6 +46,7 @@ export const products: IFieldResolver<
 
 export const server = new ApolloServer({
   cors: true,
+  introspection: true,
   playground: true,
   resolvers: {
     Query: {

@@ -7,8 +7,11 @@ _Sample product data over [GraphQL](https://graphql.org)._
 * [Node.js](https://nodejs.org/en/) `>=12.9.x` (recommend using
   [nvm](https://github.com/nvm-sh/nvm/) to manage Node.js versions)
 * [Yarn](https://yarnpkg.com/en/)
+* [Docker](https://www.docker.com) (optional)
 
 ## Setup
+
+### Node.js on host machine
 
 1. Clone the repository
 2. Install the dependencies:
@@ -22,6 +25,16 @@ _Sample product data over [GraphQL](https://graphql.org)._
     ```shell
     yarn build
     ```
+
+### Docker
+
+You can optionally build and run this project in a Docker container:
+
+```shell
+cd sample-graphql-product-server
+docker build -t sample-graphql-product-server .
+docker run -p 4000:4000 sample-graphql-product-server
+```
 
 ## Running the server
 
